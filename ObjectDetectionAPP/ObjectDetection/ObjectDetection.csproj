@@ -37,6 +37,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>robot.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -167,6 +170,32 @@
     <Resource Include="Contents\Configuraton_backup.xml">
       <SubType>Designer</SubType>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\down.png" />
+    <Resource Include="images\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\old\add.png" />
+    <Resource Include="images\old\down.png" />
+    <Resource Include="images\old\remove.png" />
+    <Resource Include="images\old\start.png" />
+    <Resource Include="images\old\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\robot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="robot.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

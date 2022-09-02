@@ -57,7 +57,7 @@ def create_train_test_file(dataset):
     # 0.75 -> deixar os primeiros 75% (150)
     # 0.50 -> deixar os primeiros 75% (100)
     # 0.25 -> deixar os primeiros 75% (50)
-    all_files = all_files_aux[:int(len(all_files_aux) * 0.25)]
+    all_files = all_files_aux[:int(len(all_files_aux) * 0.50)]
 
     # get lenght 30% of elements from the list
     lenght = int(len(all_files) * 0.3)

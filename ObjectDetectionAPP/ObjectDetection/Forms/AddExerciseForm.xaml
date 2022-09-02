@@ -5,24 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
-        Title="Add Excercise" Height="212.616" Width="560.38">
-    <Grid>
+        Title="Add Excercise" Height="176.087" Width="556.165" Background="#FFADADAD">
+    <Grid Background="#FF8B8B8F" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="80*"/>
             <ColumnDefinition Width="57*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="label1" Content="Object Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="28" Width="127"/>
-        <ComboBox x:Name="comboexerciselist" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Width="157" Height="28"/>
+        <Label x:Name="label1" Content="Object Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="28" Width="127" Foreground="White"/>
+        <ComboBox x:Name="comboexerciselist" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Width="157" Height="28" BorderBrush="#FFADADAD" Foreground="#FFADADAD">
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="#FFADADAD" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+        </ComboBox>
 
-        <Label x:Name="label2" Content="Question" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Height="28" Width="127"/>
-        <TextBox x:Name="QuestionText" Text="" HorizontalAlignment="Left" Height="28" Margin="142,43,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="396" Grid.ColumnSpan="2" />
+        <Label x:Name="label2" Content="Question" HorizontalAlignment="Left" Margin="10,43,0,0" VerticalAlignment="Top" Height="28" Width="127" Foreground="White"/>
+        <TextBox x:Name="QuestionText" Text="" HorizontalAlignment="Left" Height="28" Margin="142,43,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="396" Grid.ColumnSpan="2" Background="#FFADADAD" BorderBrush="#FFADADAD" Foreground="White" SelectionBrush="#FFADADAD" />
 
-        <Label x:Name="label3" Content="Successful Answer" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="28" Width="127"/>
-        <TextBox x:Name="SuccessfulAnswerText" Text="" HorizontalAlignment="Left" Height="28" Margin="142,76,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="396" Grid.ColumnSpan="2" />
+        <Label x:Name="label3" Content="Successful Answer" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Height="28" Width="127" Foreground="White"/>
+        <TextBox x:Name="SuccessfulAnswerText" Text="" HorizontalAlignment="Left" Height="28" Margin="142,76,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="396" Grid.ColumnSpan="2" SelectionBrush="#FFADADAD" Foreground="White" BorderBrush="#FFADADAD" Background="#FFADADAD" />
 
-        <Label x:Name="label4" Content="UnSuccessful Answer" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="28" Width="127"/>
-        <TextBox x:Name="UnSuccessfulAnswerText" Text="" HorizontalAlignment="Left" Height="28" Margin="142,109,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="396" Grid.ColumnSpan="2"/>
+        <Label x:Name="label4" Content="UnSuccessful Answer" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="28" Width="127" Foreground="White"/>
+        <TextBox x:Name="UnSuccessfulAnswerText" Text="" HorizontalAlignment="Left" Height="28" Margin="142,109,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="396" Grid.ColumnSpan="2" Background="#FFADADAD" BorderBrush="#FFADADAD" Foreground="White" SelectionBrush="#FFADADAD"/>
 
-        <Button x:Name="Add_Button" Content="Add" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="528" Height="27" Click="Add_Button_Click" Margin="10,142,0,0" Grid.ColumnSpan="2"/>
+
+        <Button x:Name="Add_Button" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="34" Height="34" Click="Add_Button_Click" Margin="182,4,0,0" BorderThickness="0" Grid.Column="1">
+            <Button.Background>
+                <ImageBrush ImageSource="/ObjectDetection;component/images/add.png"/>
+            </Button.Background>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Window>

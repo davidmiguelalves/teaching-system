@@ -7,12 +7,15 @@
         Closing="MainForm_Closing"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="Teaching System" Height="387.044" Width="1302">
-    <Grid>
+        Title="Teaching System" Height="387.044" Width="1311.676">
+    <Grid Background="#FF8B8B8F" >
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="323*"/>
-            <ColumnDefinition Width="324*"/>
+            <ColumnDefinition Width="581*"/>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="566*"/>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="ExercisesGrid"
             ItemsSource="{Binding .}"
@@ -25,10 +28,20 @@
             AutoGenerateColumns="False"
             MouseDoubleClick="ExercisesGrid_MouseDoubleClick"
             SelectionChanged="ExercisesGrid_SelectionChanged"
-            PreviewKeyDown="ExercisesGrid_PreviewKeyDown">
+            PreviewKeyDown="ExercisesGrid_PreviewKeyDown" Background="#FFADADAD" BorderBrush="#FFADADAD" Foreground="White">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Exercise" IsReadOnly="True" Binding="{Binding ExerciseName}" Width="*"/>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#FFB9B9B9" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Style>
+                <Style TargetType="DataGrid">
+                    <Setter Property="RowBackground" Value="#FFADADAD"/>
+                </Style>
+            </DataGrid.Style>
         </DataGrid>
         <DataGrid x:Name="ObjectsGrid"
             ItemsSource="{Binding ExerciseObject}"
@@ -39,34 +52,119 @@
             VerticalAlignment="Top"
             PreviewKeyDown="ObjectsGrid_PreviewKeyDown"
             TargetUpdated="ObjectsGrid_TargetUpdated"
-            Height="229" Width="1033" Margin="210,114,0,0" AutoGenerateColumns="False" Grid.ColumnSpan="2">
+            Height="253" Width="1033" Margin="210,90,0,0" AutoGenerateColumns="False" Grid.ColumnSpan="4" Background="#FFADADAD" BorderBrush="#FFADABAD" Foreground="White">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Object Name" IsReadOnly="True" Binding="{Binding ObjectName}" Width="0.3*" CanUserSort="False"/>
                 <DataGridTextColumn Header="Question" IsReadOnly="False" Binding="{Binding Question, NotifyOnTargetUpdated=True}" Width="0.8*" CanUserSort="False"/>
                 <DataGridTextColumn Header="Successful Answer" IsReadOnly="False" Binding="{Binding SuccessfulAnswer, NotifyOnTargetUpdated=True}" Width="*" CanUserSort="False"/>
                 <DataGridTextColumn Header="Unsuccessful Answer" IsReadOnly="False" Binding="{Binding UnSuccessfulAnswer, NotifyOnTargetUpdated=True}" Width="*" CanUserSort="False"/>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="#FFB9B9B9" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Style>
+                <Style TargetType="DataGrid">
+                    <Setter Property="RowBackground" Value="#FFADADAD"/>
+                </Style>
+            </DataGrid.Style>
         </DataGrid>
-        <Label x:Name="label" Content="Student name" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Height="28" Width="84"/>
-        <TextBox x:Name="StudentText" Text="Student name" HorizontalAlignment="Left" Height="28" Margin="103,10,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="102" TextChanged="StudentText_TextChanged"/>
+        <Label x:Name="label" Content="Student name" HorizontalAlignment="Left" Margin="14,10,0,0" VerticalAlignment="Top" Height="28" Width="84" Foreground="White"/>
+        <TextBox x:Name="StudentText" Text="Student name" HorizontalAlignment="Left" Height="28" Margin="103,10,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="102" TextChanged="StudentText_TextChanged" Background="#FFADADAD" SelectionBrush="#FFADADAD" Foreground="White"/>
 
-        <Label x:Name="label1" Content="Opening Sentence" HorizontalAlignment="Left" Margin="210,48,0,0" VerticalAlignment="Top" Height="28" Width="108"/>
-        <TextBox x:Name="OpeningSentenceText" Text="Hi %%STUDENTNAME%% let's learn %%OBJECTNAME%%!" HorizontalAlignment="Left" Height="28" Margin="323,48,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="954" TextChanged="OpeningSentenceText_TextChanged" Grid.ColumnSpan="2"/>
+        <Label x:Name="label1" Content="Opening Sentence" HorizontalAlignment="Left" Margin="210,10,0,0" VerticalAlignment="Top" Height="28" Width="108" Foreground="White"/>
+        <TextBox x:Name="OpeningSentenceText" Text="Hi %%STUDENTNAME%% let's learn %%OBJECTNAME%%!" HorizontalAlignment="Left" Height="28" Margin="323,10,0,0" TextWrapping="Wrap" VerticalContentAlignment="Center" VerticalAlignment="Top" Width="920" TextChanged="OpeningSentenceText_TextChanged" Grid.ColumnSpan="4" Background="#FFADADAD" SelectionBrush="#FFADADAD" Foreground="White"/>
 
-        <Label x:Name="label2" Content="Finish Sentence" HorizontalAlignment="Left" Margin="210,81,0,0" VerticalAlignment="Top" Height="28" Width="108"/>
-        <TextBox x:Name="FinishSentenceText" Text="Very well!" HorizontalAlignment="Left" Height="28" Margin="323,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="954" TextChanged="FinishSentenceText_TextChanged" RenderTransformOrigin="0.567,0.459" Grid.ColumnSpan="2"/>
+        <Label x:Name="label2" Content="Finish Sentence" HorizontalAlignment="Left" Margin="210,48,0,0" VerticalAlignment="Top" Height="28" Width="108" Foreground="White"/>
+        <TextBox x:Name="FinishSentenceText" Text="Very well!" HorizontalAlignment="Left" Height="28" Margin="323,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" Width="920" TextChanged="FinishSentenceText_TextChanged" RenderTransformOrigin="0.567,0.459" Grid.ColumnSpan="4" Background="#FFADADAD" Foreground="White" SelectionBrush="#FFADADAD"/>
 
-        <Button x:Name="Start_Button" Content="Start" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="88" Height="27" Click="Start_Button_Click" Margin="215,11,0,0" RenderTransformOrigin="-1.125,2.609"/>
-        <Button x:Name="Add_Button" Content="Add" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="88" Height="27" Click="Add_Button_Click" Margin="308,11,0,0"/>
-        <Button x:Name="Remove_Button" Content="Remove" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="88" Height="27" Click="Remove_Button_Click" Margin="401,11,0,0"/>
+        <Button x:Name="Start_Button" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="38" Height="38" Click="Start_Button_Click" Margin="10,93,0,0" BorderThickness="0" Grid.Column="4" Foreground="White" >
+            <Button.Background>
+                <ImageBrush ImageSource="/ObjectDetection;component/images/start.png"/>
+            </Button.Background>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="Add_Button" Content="" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="38" Height="38" Click="Add_Button_Click" Margin="10,161,0,0" BorderThickness="0" Grid.Column="4">
+            <Button.Background>
+                <ImageBrush ImageSource="/ObjectDetection;component/images/add.png"/>
+            </Button.Background>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="Remove_Button" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Height="38" Click="Remove_Button_Click" Margin="10,204,0,0" BorderThickness="0" Grid.Column="4" RenderTransformOrigin="0.521,-0.314">
+            <Button.Background>
+                <ImageBrush ImageSource="/ObjectDetection;component/images/remove.png"/>
+            </Button.Background>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
 
-        <Button x:Name="Up_Button" FontFamily="Marlett" Content="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="29" Height="111" Click="Up_Button_Click" Margin="602,114,0,0" RenderTransformOrigin="-1.125,2.609" Grid.Column="1"/>
-        <Button x:Name="Down_Button" FontFamily="Marlett" Content="6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="29" Height="111" Click="Down_Button_Click" Margin="602,232,0,0" RenderTransformOrigin="-1.125,2.609" Grid.Column="1"/>
+        <Button x:Name="Up_Button" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Height="38" Click="Up_Button_Click" Margin="10,260,0,0" RenderTransformOrigin="-1.125,2.609" Grid.Column="4" BorderThickness="0">
+            <Button.Background>
+                <ImageBrush ImageSource="/ObjectDetection;component/images/up.png"/>
+            </Button.Background>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="Down_Button" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="38" Height="38" Click="Down_Button_Click" Margin="10,303,0,0" RenderTransformOrigin="-1.125,2.609" Grid.Column="4" BorderThickness="0">
+            <Button.Background>
+                <ImageBrush ImageSource="/ObjectDetection;component/images/down.png"/>
+            </Button.Background>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
 
-        <Label x:Name="label3" Content="Image Recognition Status" HorizontalAlignment="Left" Margin="14,264,0,0" VerticalAlignment="Top" Height="37" Width="152"/>
-        <Ellipse x:Name="ImageRecognitionStatus" Fill="Red" Stroke="Black"  Margin="169,264,441,51" RenderTransformOrigin="0.506,0.175" />
-        <Label x:Name="label4" Content="Robot Status" HorizontalAlignment="Left" Margin="12,306,0,-1" VerticalAlignment="Top" Height="37" Width="152"/>
-        <Ellipse x:Name="RobotStatus" Fill="Red" Stroke="Black"  Margin="169,305,441,10" RenderTransformOrigin="0.506,0.175"/>
+        <Label x:Name="label3" Content="Image Recognition Status" HorizontalAlignment="Left" Margin="14,264,0,0" VerticalAlignment="Top" Height="37" Width="152" Foreground="White"/>
+        <Ellipse x:Name="ImageRecognitionStatus" Fill="Red" Stroke="Black"  Margin="169,264,375,53" RenderTransformOrigin="0.506,0.175" />
+        <Label x:Name="label4" Content="Robot Status" HorizontalAlignment="Left" Margin="12,306,0,0" VerticalAlignment="Top" Height="37" Width="152" Foreground="White"/>
+        <Ellipse x:Name="RobotStatus" Fill="Red" Stroke="Black"  Margin="169,305,375,10" RenderTransformOrigin="0.506,0.175"/>
 
     </Grid>
 </Window>

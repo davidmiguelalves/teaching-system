@@ -282,6 +282,10 @@ namespace ObjectDetection.Forms
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show($"Objects API not working!", "Wait", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             catch
             {
