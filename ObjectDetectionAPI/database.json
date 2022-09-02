@@ -1,0 +1,12 @@
+{
+    "exercises": [
+        {
+            "name": "colors", 
+            "objects": ["red","blue","green"]
+        },
+        {
+            "name": "shapes", 
+            "objects": ["triangle","circle","square"]
+        }
+    ]
+}

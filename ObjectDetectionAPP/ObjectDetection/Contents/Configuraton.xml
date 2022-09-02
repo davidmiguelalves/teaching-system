@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<Configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <StudentName>David</StudentName>
+  <Exercises>
+    <Exercise>
+      <Objects>
+        <ExerciseObject>
+          <ObjectName>blue</ObjectName>
+          <Question>Can you show the blue color please?</Question>
+          <SuccessfulAnswer>Very good that's the blue color, let's go to the next one!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>That is not the blue color!</UnSuccessfulAnswer>
+        </ExerciseObject>
+        <ExerciseObject>
+          <ObjectName>red</ObjectName>
+          <Question>Can you show the red color please?</Question>
+          <SuccessfulAnswer>Very good that's the red color, let's go to the next one!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>That is not the red color!</UnSuccessfulAnswer>
+        </ExerciseObject>
+        <ExerciseObject>
+          <ObjectName>red</ObjectName>
+          <Question>Red?</Question>
+          <SuccessfulAnswer>Good</SuccessfulAnswer>
+          <UnSuccessfulAnswer>Bad</UnSuccessfulAnswer>
+        </ExerciseObject>
+        <ExerciseObject>
+          <ObjectName>green</ObjectName>
+          <Question>Can you show the green color please?</Question>
+          <SuccessfulAnswer>Very good that's the green color!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>That is not the green color!</UnSuccessfulAnswer>
+        </ExerciseObject>
+      </Objects>
+      <ExerciseName>colors</ExerciseName>
+      <OpeningSentence>Hello %%STUDENTNAME%%! Let's learn colors?</OpeningSentence>
+      <FinishSentence>Very well, you learned three colors, red, green and blue! Congratulations.</FinishSentence>
+    </Exercise>
+    <Exercise>
+      <Objects>
+        <ExerciseObject>
+          <ObjectName>square</ObjectName>
+          <Question>Can you show the square please?</Question>
+          <SuccessfulAnswer>Very good that's the square, let's go to the next one!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>That is not the square!</UnSuccessfulAnswer>
+        </ExerciseObject>
+        <ExerciseObject>
+          <ObjectName>circle</ObjectName>
+          <Question>Can you show the circle please?</Question>
+          <SuccessfulAnswer>Very good that's the circle, let's go to the next one!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>That is not the circle!</UnSuccessfulAnswer>
+        </ExerciseObject>
+        <ExerciseObject>
+          <ObjectName>triangle</ObjectName>
+          <Question>Can you show the triangle please?</Question>
+          <SuccessfulAnswer>Very good that's the triangle!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>That is not the triangle!</UnSuccessfulAnswer>
+        </ExerciseObject>
+      </Objects>
+      <ExerciseName>shapes</ExerciseName>
+      <OpeningSentence>Hello %%STUDENTNAME%%! Let's learn shapes?</OpeningSentence>
+      <FinishSentence>Very well, you learned three shapes, square, circle and triangle! Congratulations.</FinishSentence>
+    </Exercise>
+  </Exercises>
+</Configuration>

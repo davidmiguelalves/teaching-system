@@ -1,0 +1,5 @@
+classes = 3
+train = colors/data/train.txt
+valid = colors/data/test.txt
+names = colors/data/classes.names
+backup = colors/train/

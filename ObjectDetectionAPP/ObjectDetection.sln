@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObjectDetection", "ObjectDetection\ObjectDetection.csproj", "{23F1C824-8274-4DD7-9DBF-D93B29BB6B95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23F1C824-8274-4DD7-9DBF-D93B29BB6B95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23F1C824-8274-4DD7-9DBF-D93B29BB6B95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23F1C824-8274-4DD7-9DBF-D93B29BB6B95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23F1C824-8274-4DD7-9DBF-D93B29BB6B95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDCF86B0-34B5-4A2B-A836-45343BD07E8D}
+	EndGlobalSection
+EndGlobal
