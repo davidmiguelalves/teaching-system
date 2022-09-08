@@ -1,6 +1,7 @@
 import argparse, sys
 import os
 import shutil
+import random
 
 def copy_file(src_file, dest_file):
 
@@ -54,10 +55,14 @@ def create_train_test_file(dataset):
             if file.endswith('.jpg'):
                 all_files_aux.append(path + file + '\n')
 
-    # 0.75 -> deixar os primeiros 75% (150)
-    # 0.50 -> deixar os primeiros 75% (100)
-    # 0.25 -> deixar os primeiros 75% (50)
-    all_files = all_files_aux[:int(len(all_files_aux) * 0.50)]
+    # *0.75 -> deixar os primeiros 75% (150 imagens)
+    # *0.50 -> deixar os primeiros 75% (100 imagens)
+    # *0.25 -> deixar os primeiros 75% (50 imagens)
+    #[:int(len(all_files_aux) * 0.75)]
+
+    # shuffle the array
+    random.shuffle(all_files_aux)
+    all_files = all_files_aux
 
     # get lenght 30% of elements from the list
     lenght = int(len(all_files) * 0.3)
