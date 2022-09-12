@@ -97,11 +97,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Forms\AddExerciseForm.xaml">
+    <Page Include="Forms\AddActivityForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Forms\ExerciseForm.xaml">
+    <Page Include="Forms\ActivityForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -116,11 +116,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Forms\AddExerciseForm.xaml.cs">
-      <DependentUpon>AddExerciseForm.xaml</DependentUpon>
+    <Compile Include="Forms\AddActivityForm.xaml.cs">
+      <DependentUpon>AddActivityForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ExerciseForm.xaml.cs">
-      <DependentUpon>ExerciseForm.xaml</DependentUpon>
+    <Compile Include="Forms\ActivityForm.xaml.cs">
+      <DependentUpon>ActivityForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\MainForm.xaml.cs">
       <DependentUpon>MainForm.xaml</DependentUpon>
@@ -130,9 +130,9 @@
     <Compile Include="Others\ImageUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Exercise.cs" />
+    <Compile Include="Models\Activity.cs" />
     <Compile Include="API\ZecaAPI.cs" />
-    <Compile Include="Models\ExerciseObject.cs" />
+    <Compile Include="Models\ActivityObject.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Workers\Detection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

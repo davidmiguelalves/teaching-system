@@ -12,6 +12,6 @@ namespace ObjectDetection.Models
     public class Configuration
     {
         public string StudentName = "";
-        public List<Exercise> Exercises = new List<Exercise>();
+        public List<Activity> Activities = new List<Activity>();
     }
 }

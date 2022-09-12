@@ -23,41 +23,41 @@ using System.Xml.Serialization;
 namespace ObjectDetection.Forms
 {
     /// <summary>
-    /// Interaction logic for ExerciseForm.xaml
+    /// Interaction logic for AddActivityForm.xaml
     /// </summary>
-    public partial class AddExerciseForm : Window
+    public partial class AddActivityForm : Window
     {
         private ObjectDetectionAPI objectAPI = new ObjectDetectionAPI();
         private Configuration configuration = new Configuration();
-        public ExerciseObject exerciseObject = null;
-        public AddExerciseForm(Configuration config, string exercise)
+        public ActivityObject activityObject = null;
+        public AddActivityForm(Configuration config, string activity)
         {
             configuration = config;
 
             InitializeComponent();
-            LoadObjects(exercise);
+            LoadObjects(activity);
         }
-        private void LoadObjects(string exercise)
+        private void LoadObjects(string activity)
         {
-            List<string> objects = objectAPI.GetObjects(exercise);
+            List<string> objects = objectAPI.GetObjects(activity);
             foreach (string ex in objects)
             {
-                comboexerciselist.Items.Add(ex);
+                comboactivitylist.Items.Add(ex);
             }
-            comboexerciselist.SelectedIndex = 0;
+            comboactivitylist.SelectedIndex = 0;
         }
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
             if(!QuestionText.Text.Equals("") && !SuccessfulAnswerText.Text.Equals("") && !UnSuccessfulAnswerText.Text.Equals(""))
             {
-                ExerciseObject obj = new ExerciseObject()
+                ActivityObject obj = new ActivityObject()
                 {
-                    ObjectName = comboexerciselist.Text,
+                    ObjectName = comboactivitylist.Text,
                     Question = QuestionText.Text,
                     SuccessfulAnswer = SuccessfulAnswerText.Text,
                     UnSuccessfulAnswer = UnSuccessfulAnswerText.Text
                 };
-                exerciseObject = obj;
+                activityObject = obj;
                 Close();
             }
             else

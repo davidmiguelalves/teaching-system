@@ -1,4 +1,4 @@
-﻿<Window x:Class="ObjectDetection.Forms.AddExerciseForm"
+﻿<Window x:Class="ObjectDetection.Forms.AddActivityForm"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,7 +12,7 @@
             <ColumnDefinition Width="57*"/>
         </Grid.ColumnDefinitions>
         <Label x:Name="label1" Content="Object Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="28" Width="127" Foreground="White"/>
-        <ComboBox x:Name="comboexerciselist" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Width="157" Height="28" BorderBrush="#FFADADAD" Foreground="#FFADADAD">
+        <ComboBox x:Name="comboactivitylist" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top" Width="157" Height="28" BorderBrush="#FFADADAD" Foreground="#FFADADAD">
             <ComboBox.Background>
                 <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
                     <GradientStop Color="#FFF0F0F0" Offset="0"/>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ObjectDetection.Models
 {
-    public class ExerciseObject
+    public class ActivityObject
     {
         public string ObjectName { get; set; } = "";
         public string Question { get; set; } = "";

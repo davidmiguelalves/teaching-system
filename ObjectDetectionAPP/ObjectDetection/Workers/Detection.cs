@@ -19,7 +19,7 @@ namespace ObjectDetection.Workers
 
         private ObjectDetectionAPI objectAPI = new ObjectDetectionAPI();
 
-        private string exercise = "";
+        private string activity = "";
 
         private VideoCapture videoCapture = null;
         private Thread cameraThread = null;
@@ -39,9 +39,9 @@ namespace ObjectDetection.Workers
 
         #region public functions
 
-        public Detection(string exercise)
+        public Detection(string act)
         {
-            this.exercise = exercise;
+            this.activity = act;
         }
 
 
@@ -91,7 +91,7 @@ namespace ObjectDetection.Workers
                 videoCapture.Read(image);
                 if (!image.Empty())
                 {
-                    List<ObjectDetected> list = objectAPI.DetectObject(exercise, image.ToBytes());
+                    List<ObjectDetected> list = objectAPI.DetectObject(activity, image.ToBytes());
                     foreach (ObjectDetected obj in list)
                     {
                         image.Rectangle(new OpenCvSharp.Point(obj.x1, obj.y1), new OpenCvSharp.Point(obj.x2, obj.y2), 1);

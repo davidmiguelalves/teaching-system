@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ObjectDetection.Models
 {
-    public class Exercise
+    public class Activity
     {
-        public string ExerciseName { get; set; } = "";
+        public string ActivityName { get; set; } = "";
         public string OpeningSentence { get; set; } = "";
         public string FinishSentence { get; set; } = "";
 
-        public List<ExerciseObject> Objects = new List<ExerciseObject>();
+        public List<ActivityObject> Objects = new List<ActivityObject>();
 
     }
 }

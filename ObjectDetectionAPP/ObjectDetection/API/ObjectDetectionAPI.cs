@@ -14,7 +14,7 @@ namespace ObjectDetection.API
     {
         public string URL { get; set; } = "http://127.0.0.1:5000";
 
-        public List<ObjectDetected> DetectObject(string exercise, byte[] byteArray)
+        public List<ObjectDetected> DetectObject(string activity, byte[] byteArray)
         {
             List<ObjectDetected> ret = new List<ObjectDetected>();
 
@@ -22,7 +22,7 @@ namespace ObjectDetection.API
             {
                 try
                 {
-                    HttpResponseMessage response = client.PutAsync($"{URL}/detect/{exercise}", new ByteArrayContent(byteArray)).Result;
+                    HttpResponseMessage response = client.PutAsync($"{URL}/detect/{activity}", new ByteArrayContent(byteArray)).Result;
                     if (response.IsSuccessStatusCode)
                     {
                         var content = response.Content.ReadAsStringAsync().Result;
@@ -36,7 +36,7 @@ namespace ObjectDetection.API
             return ret;
         }
 
-        public List<string> GetExercises()
+        public List<string> GetActivities()
         {
             List<string> ret = new List<string>();
 
@@ -44,7 +44,7 @@ namespace ObjectDetection.API
             {
                 try
                 {
-                    HttpResponseMessage response = client.GetAsync($"{URL}/exercises").Result;
+                    HttpResponseMessage response = client.GetAsync($"{URL}/activities").Result;
                     if (response.IsSuccessStatusCode)
                     {
                         var content = response.Content.ReadAsStringAsync().Result;
@@ -59,7 +59,7 @@ namespace ObjectDetection.API
             return ret;
         }
 
-        public List<string> GetObjects(string exercise)
+        public List<string> GetObjects(string activity)
         {
             List<string> ret = new List<string>();
 
@@ -67,7 +67,7 @@ namespace ObjectDetection.API
             {
                 try
                 {
-                    HttpResponseMessage response = client.GetAsync($"{URL}/objects/{exercise}").Result;
+                    HttpResponseMessage response = client.GetAsync($"{URL}/objects/{activity}").Result;
                     if (response.IsSuccessStatusCode)
                     {
                         var content = response.Content.ReadAsStringAsync().Result;

@@ -34,8 +34,8 @@ namespace ObjectDetection.Forms
         private Thread objectsThread = null;
         private IRobotAPI robotAPI = null;
         private ObjectDetectionAPI objectAPI = null;
-        private string location = @"D:\Tese\Code\ObjectDetectionAPP\ObjectDetection\Contents";
-        private bool exercisesvalidaded = false;
+        private string location = @"D:\GitHub\teaching-system\ObjectDetectionAPP\ObjectDetection\Contents\";
+        private bool activityvalidaded = false;
 
         #endregion
 
@@ -52,12 +52,12 @@ namespace ObjectDetection.Forms
 
             LoadData();
             
-            ValidateExercises();
+            ValidateActivities();
             
-            ExercisesGrid.ItemsSource = configuration.Exercises;
-            ExercisesGrid.SelectedItem = configuration.Exercises.Count > 0 ? configuration.Exercises[0] : null;
+            ActivitiesGrid.ItemsSource = configuration.Activities;
+            ActivitiesGrid.SelectedItem = configuration.Activities.Count > 0 ? configuration.Activities[0] : null;
             StudentText.Text = configuration.StudentName;
-            FillData(configuration.Exercises.Count > 0 ? configuration.Exercises[0] : null);
+            FillData(configuration.Activities.Count > 0 ? configuration.Activities[0] : null);
 
             robotThread = new Thread(new ThreadStart(VerifyRobot));
             robotThread.Start();
@@ -85,43 +85,43 @@ namespace ObjectDetection.Forms
             SaveConfiguration();
         }
 
-        public void ValidateExercises()
+        public void ValidateActivities()
         {
-            List<string> allexercises = LoadExercisesAPI();
-            if (allexercises.Count() == 0) return;
-            List<Exercise> exerciseList = new List<Exercise>(configuration.Exercises);
+            List<string> allactivities = LoadActivitiesAPI();
+            if (allactivities.Count() == 0) return;
+            List<Activity> activitiesList = new List<Activity>(configuration.Activities);
             bool changed = false;
 
-            foreach (Exercise ex in exerciseList)
+            foreach (Activity ex in activitiesList)
             {
-                if (!allexercises.Contains(ex.ExerciseName)){
-                    configuration.Exercises.Remove(ex);
+                if (!allactivities.Contains(ex.ActivityName)){
+                    configuration.Activities.Remove(ex);
                     changed = true;
                 }
             }
-            foreach (string ex in allexercises)
+            foreach (string ex in allactivities)
             {
-                if (configuration.Exercises.Where(e => e.ExerciseName.Equals(ex)).Count() == 0)
+                if (configuration.Activities.Where(e => e.ActivityName.Equals(ex)).Count() == 0)
                 {
-                    configuration.Exercises.Add(new Exercise()
+                    configuration.Activities.Add(new Activity()
                     {
-                        ExerciseName = ex,
+                        ActivityName = ex,
                         FinishSentence = "",
                         OpeningSentence = "",
-                        Objects = new List<ExerciseObject>()
+                        Objects = new List<ActivityObject>()
                     });
                     changed = true;
                 }
             }
             if (changed) SaveConfiguration();
-            exercisesvalidaded = true;
+            activityvalidaded = true;
         }
 
-        public List<string> LoadExercisesAPI()
+        public List<string> LoadActivitiesAPI()
         {
             if (objectAPI.Probe())
             {
-                return objectAPI.GetExercises();
+                return objectAPI.GetActivities();
             }
             return new List<string>();
         }
@@ -132,7 +132,7 @@ namespace ObjectDetection.Forms
             StreamReader file = new StreamReader(System.IO.Path.Combine(location, "Configuraton.xml"));
             Configuration configuration = (Configuration)reader.Deserialize(file);
             this.configuration.StudentName = configuration.StudentName;
-            this.configuration.Exercises = configuration.Exercises;
+            this.configuration.Activities = configuration.Activities;
             file.Close();
         }
 
@@ -177,14 +177,14 @@ namespace ObjectDetection.Forms
                     {
                         ImageRecognitionStatus.Fill = new SolidColorBrush(Colors.Green);
                     }));
-                    if (!exercisesvalidaded)
+                    if (!activityvalidaded)
                     {
-                        ValidateExercises();
+                        ValidateActivities();
 
                         Dispatcher.Invoke(DispatcherPriority.Render, new Action(delegate ()
                         {
-                            ExercisesGrid.Items.Refresh();
-                            ExercisesGrid.SelectedItem = configuration.Exercises.Count > 0 ? configuration.Exercises[0] : null;
+                            ActivitiesGrid.Items.Refresh();
+                            ActivitiesGrid.SelectedItem = configuration.Activities.Count > 0 ? configuration.Activities[0] : null;
                         }));
                     }
                 }
@@ -207,13 +207,13 @@ namespace ObjectDetection.Forms
             list[indexB] = tmp;
         }
 
-        private void FillData(Exercise exercise)
+        private void FillData(Activity activity)
         {
-            if (exercise != null)
+            if (activity != null)
             {
-                ObjectsGrid.ItemsSource = exercise.Objects;
-                OpeningSentenceText.Text = exercise.OpeningSentence;
-                FinishSentenceText.Text = exercise.FinishSentence;
+                ObjectsGrid.ItemsSource = activity.Objects;
+                OpeningSentenceText.Text = activity.OpeningSentence;
+                FinishSentenceText.Text = activity.FinishSentence;
             }
             else
             {
@@ -223,7 +223,7 @@ namespace ObjectDetection.Forms
             }
         }
 
-        private void StartExercise(Exercise ex)
+        private void StartActivity(Activity ex)
         {
             if (robotAPI.IsConnect() && objectAPI.Probe())
             {
@@ -231,9 +231,9 @@ namespace ObjectDetection.Forms
                 {
                     MessageBox.Show($"Add objets to the list!", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-                else if (MessageBox.Show($"Start Exercise {ex.ExerciseName}?", "Start Exercise?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                else if (MessageBox.Show($"Start activity {ex.ActivityName}?", "Start Activity?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    ExerciseForm form = new ExerciseForm(ex, configuration.StudentName, robotAPI);
+                    ActivityForm form = new ActivityForm(ex, configuration.StudentName, robotAPI);
                     form.ShowDialog();
                 }
             }
@@ -251,10 +251,10 @@ namespace ObjectDetection.Forms
         {
             try
             {
-                Exercise exercise = (Exercise)ExercisesGrid.SelectedItem;
-                if (exercise != null)
+                Activity activity = (Activity)ActivitiesGrid.SelectedItem;
+                if (activity != null)
                 {
-                    StartExercise(exercise);
+                    StartActivity(activity);
                 }
             }
             catch
@@ -268,15 +268,15 @@ namespace ObjectDetection.Forms
             {
                 if (objectAPI.Probe())
                 {
-                    Exercise exercise = (Exercise)ExercisesGrid.SelectedItem;
-                    if (exercise != null)
+                    Activity activity = (Activity)ActivitiesGrid.SelectedItem;
+                    if (activity != null)
                     {
-                        AddExerciseForm form = new AddExerciseForm(configuration, exercise.ExerciseName);
+                        AddActivityForm form = new AddActivityForm(configuration, activity.ActivityName);
                         form.ShowDialog();
-                        ExerciseObject obj = form.exerciseObject;
+                        ActivityObject obj = form.activityObject;
                         if (obj != null)
                         {
-                            configuration.Exercises[ExercisesGrid.SelectedIndex].Objects.Add(obj);
+                            configuration.Activities[ActivitiesGrid.SelectedIndex].Objects.Add(obj);
                             ObjectsGrid.Items.Refresh();
                             SaveConfiguration();
                         }
@@ -296,15 +296,15 @@ namespace ObjectDetection.Forms
         {
             try
             {
-                Exercise exercise = (Exercise)ExercisesGrid.SelectedItem;
-                if (exercise != null)
+                Activity activity = (Activity)ActivitiesGrid.SelectedItem;
+                if (activity != null)
                 {
-                    ExerciseObject obj = (ExerciseObject)ObjectsGrid.SelectedItem;
+                    ActivityObject obj = (ActivityObject)ObjectsGrid.SelectedItem;
                     if (obj != null)
                     {
                         if (MessageBox.Show($"Remove Object {obj.ObjectName}?", "Remove?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                         {
-                            configuration.Exercises[ExercisesGrid.SelectedIndex].Objects.Remove(obj);
+                            configuration.Activities[ActivitiesGrid.SelectedIndex].Objects.Remove(obj);
                             ObjectsGrid.Items.Refresh();
                             ObjectsGrid.SelectedIndex = 0;
                             SaveConfiguration();
@@ -322,14 +322,14 @@ namespace ObjectDetection.Forms
             try
             {
 
-                Exercise exercise = (Exercise)ExercisesGrid.SelectedItem;
-                if (exercise != null)
+                Activity activity = (Activity)ActivitiesGrid.SelectedItem;
+                if (activity != null)
                 {
-                    ExerciseObject obj = (ExerciseObject)ObjectsGrid.SelectedItem;
+                    ActivityObject obj = (ActivityObject)ObjectsGrid.SelectedItem;
                     if (obj != null)
                     {
                         if (ObjectsGrid.SelectedIndex == 0) return;
-                        Swap(configuration.Exercises[ExercisesGrid.SelectedIndex].Objects, ObjectsGrid.SelectedIndex, ObjectsGrid.SelectedIndex - 1);
+                        Swap(configuration.Activities[ActivitiesGrid.SelectedIndex].Objects, ObjectsGrid.SelectedIndex, ObjectsGrid.SelectedIndex - 1);
                         ObjectsGrid.Items.Refresh();
                         SaveConfiguration();
                     }
@@ -341,14 +341,14 @@ namespace ObjectDetection.Forms
         }
         private void Down_Button_Click(object sender, RoutedEventArgs e)
         {
-            Exercise exercise = (Exercise)ExercisesGrid.SelectedItem;
-            if (exercise != null)
+            Activity activity = (Activity)ActivitiesGrid.SelectedItem;
+            if (activity != null)
             {
-                ExerciseObject obj = (ExerciseObject)ObjectsGrid.SelectedItem;
+                ActivityObject obj = (ActivityObject)ObjectsGrid.SelectedItem;
                 if (obj != null)
                 {
-                    if (ObjectsGrid.SelectedIndex == configuration.Exercises.Count) return;
-                    Swap(configuration.Exercises[ExercisesGrid.SelectedIndex].Objects, ObjectsGrid.SelectedIndex, ObjectsGrid.SelectedIndex + 1);
+                    if (ObjectsGrid.SelectedIndex == configuration.Activities.Count) return;
+                    Swap(configuration.Activities[ActivitiesGrid.SelectedIndex].Objects, ObjectsGrid.SelectedIndex, ObjectsGrid.SelectedIndex + 1);
                     ObjectsGrid.Items.Refresh();
                     SaveConfiguration();
                 }
@@ -363,7 +363,7 @@ namespace ObjectDetection.Forms
         {
             SaveConfiguration();
         }
-        private void ExercisesGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void ActivitiesGrid_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Delete)
             {
@@ -375,29 +375,29 @@ namespace ObjectDetection.Forms
         {
             if (e.Key == Key.Delete)
             {
-                ExerciseObject obj = (ExerciseObject)ObjectsGrid.SelectedItem;
+                ActivityObject obj = (ActivityObject)ObjectsGrid.SelectedItem;
                 MessageBoxResult res = MessageBox.Show(String.Format("Would you want to delete {0}?", obj.ObjectName), "Confirmation!", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 e.Handled = (res == MessageBoxResult.No);
             }
         }
 
-        private void ExercisesGrid_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void ActivitiesGrid_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Exercise exercise = (Exercise)ExercisesGrid.SelectedItem;
-            if (exercise != null)
+            Activity activity = (Activity)ActivitiesGrid.SelectedItem;
+            if (activity != null)
             {
-                StartExercise(exercise);
+                StartActivity(activity);
             }
         }
 
-        private void ExercisesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ActivitiesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            FillData((Exercise)ExercisesGrid.SelectedItem);
+            FillData((Activity)ActivitiesGrid.SelectedItem);
         }
 
         private void StudentText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (ExercisesGrid.SelectedItem != null)
+            if (ActivitiesGrid.SelectedItem != null)
             {
                 configuration.StudentName = StudentText.Text;
                 SaveConfiguration();
@@ -410,18 +410,18 @@ namespace ObjectDetection.Forms
 
         private void OpeningSentenceText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (ExercisesGrid.SelectedItem != null)
+            if (ActivitiesGrid.SelectedItem != null)
             {
-                configuration.Exercises[ExercisesGrid.SelectedIndex].OpeningSentence = OpeningSentenceText.Text;
+                configuration.Activities[ActivitiesGrid.SelectedIndex].OpeningSentence = OpeningSentenceText.Text;
                 SaveConfiguration();
             }
         }
 
         private void FinishSentenceText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (ExercisesGrid.SelectedItem != null)
+            if (ActivitiesGrid.SelectedItem != null)
             {
-                configuration.Exercises[ExercisesGrid.SelectedIndex].FinishSentence = FinishSentenceText.Text;
+                configuration.Activities[ActivitiesGrid.SelectedIndex].FinishSentence = FinishSentenceText.Text;
                 SaveConfiguration();
             }
         }

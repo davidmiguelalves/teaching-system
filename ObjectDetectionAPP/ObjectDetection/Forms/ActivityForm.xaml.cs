@@ -24,40 +24,40 @@ using System.Xml.Serialization;
 namespace ObjectDetection.Forms
 {
     /// <summary>
-    /// Interaction logic for ExerciseForm.xaml
+    /// Interaction logic for ActivityForm.xaml
     /// </summary>
-    public partial class ExerciseForm : Window
+    public partial class ActivityForm : Window
     {
-        private Exercise exercise = new Exercise();
+        private Activity activity = new Activity();
         private string studentName = "";
 
         private Detection objectDetection;
 
-        private Thread exerciseThread = null;
-        private bool isExerciseRunning = false;
+        private Thread activityThread = null;
+        private bool isActivityRunning = false;
         private string currentState = "stop";
         
-        private int currentExercise = 0;
+        private int currentActivity = 0;
         private string currentDetected = "";
         TimeSpan LastDetected = new TimeSpan(0, 0, 0);
 
         IRobotAPI robotAPI = null;
 
-        public ExerciseForm(Exercise ex, string student, IRobotAPI robotAPI)
+        public ActivityForm(Activity act, string student, IRobotAPI robotAPI)
         {
             InitializeComponent();
-            exercise = ex;
+            activity = act;
             studentName = student;
             this.robotAPI = robotAPI;
 
-            this.Title = "Exercise: " + ex.ExerciseName;
+            this.Title = "Activity: " + act.ActivityName;
         }
 
-        private void ExerciseForm_Loaded(object sender, RoutedEventArgs e)
+        private void ActivityForm_Loaded(object sender, RoutedEventArgs e)
         {
             StartCamera();
         }
-        private void ExerciseForm_Closed(object sender, EventArgs e)
+        private void ActivityForm_Closed(object sender, EventArgs e)
         {
             objectDetection.StopCamera();
         }
@@ -66,36 +66,36 @@ namespace ObjectDetection.Forms
             try
             {
                 currentState = "start";
-                isExerciseRunning = true;
-                exerciseThread = new Thread(new ThreadStart(RunExercise));
-                exerciseThread.Start();
+                isActivityRunning = true;
+                activityThread = new Thread(new ThreadStart(RunActivity));
+                activityThread.Start();
             }
             catch
             {
             }
         }
 
-        private void RunExercise()
+        private void RunActivity()
         {
             int detectedok = 0;
             int detectedko = 0;
             int totalsecs = 3;
             TimeSpan cleardetected = new TimeSpan(0, 0, 0);
 
-            while (isExerciseRunning)
+            while (isActivityRunning)
             {
                 switch (currentState)
                 {
                     case "start":
-                        UpdateState("Starting Exercise...");
+                        UpdateState("Starting Activity...");
                         currentState = "startyolo";
                         break;
 
                     case "startyolo":
                         UpdateState("Started!");
 
-                        isExerciseRunning = true;
-                        objectDetection = new Detection(exercise.ExerciseName);
+                        isActivityRunning = true;
+                        objectDetection = new Detection(activity.ActivityName);
                         objectDetection.ImageChange += ImageChangeEvent;
                         objectDetection.ObjectDetected += ObjectDetectedEvent;
                         objectDetection.StartCamera();
@@ -127,23 +127,23 @@ namespace ObjectDetection.Forms
 
                     case "openingsentence":
                         UpdateState("Robot Speaking...");
-                        _ = robotAPI.Speak(exercise.OpeningSentence.Replace("%%STUDENTNAME%%", studentName));
-                        currentState = "questionnextexercise";
+                        _ = robotAPI.Speak(activity.OpeningSentence.Replace("%%STUDENTNAME%%", studentName));
+                        currentState = "questionnextactivity";
                         break;
 
-                    case "questionnextexercise":
+                    case "questionnextactivity":
                         UpdateState("Robot Speaking...");
-                        _ = robotAPI.Speak(exercise.Objects[currentExercise].Question.Replace("%%STUDENTNAME%%", studentName));
+                        _ = robotAPI.Speak(activity.Objects[currentActivity].Question.Replace("%%STUDENTNAME%%", studentName));
                         currentState = "waitingdetection";
                         break;
 
                     case "errorconnectingrobot":
                         UpdateState("Error Connecting to Robot!");
-                        isExerciseRunning = false;
+                        isActivityRunning = false;
                         break;
 
                     case "waitingdetection":
-                        UpdateState("Waiting Detection: " + exercise.Objects[currentExercise].ObjectName);
+                        UpdateState("Waiting Detection: " + activity.Objects[currentActivity].ObjectName);
                         if (!currentDetected.Equals(""))
                         {
                             currentState = "detected";
@@ -153,17 +153,17 @@ namespace ObjectDetection.Forms
                     case "detected":
                         UpdateState($"Detected: {currentDetected}");
 
-                        if (exercise.Objects[currentExercise].ObjectName.Equals(currentDetected))
+                        if (activity.Objects[currentActivity].ObjectName.Equals(currentDetected))
                         {
                             currentState = "waitingdetection";
                             currentDetected = "";
                             detectedok++;
                             if (detectedok >= 3)
                             {
-                                _ = robotAPI.Speak(exercise.Objects[currentExercise].SuccessfulAnswer.Replace("%%STUDENTNAME%%", studentName));
+                                _ = robotAPI.Speak(activity.Objects[currentActivity].SuccessfulAnswer.Replace("%%STUDENTNAME%%", studentName));
                                 _ = robotAPI.PlayAnimation(robotAPI.ParseAnimation(RobotAnimation.CLAP_HANDS));
 
-                                currentState = "finishexercisedetected";
+                                currentState = "finishedactivitydetected";
                             }
                         }
                         else
@@ -182,22 +182,22 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "detectedko":
-                        UpdateState("Detected Wrong Exercise! Robot Speaking...");
+                        UpdateState("Detected Wrong Object! Robot Speaking...");
                         detectedko = 0;
                         detectedok = 0;
                         currentState = "waitingclear";
 
-                        _ = robotAPI.Speak(exercise.Objects[currentExercise].UnSuccessfulAnswer.Replace("%%STUDENTNAME%%", studentName));
+                        _ = robotAPI.Speak(activity.Objects[currentActivity].UnSuccessfulAnswer.Replace("%%STUDENTNAME%%", studentName));
                         _ = robotAPI.PlayAnimation(robotAPI.ParseAnimation(RobotAnimation.CROSS_ARMS));
 
                         break;
 
-                    case "finishexercisedetected":
-                        currentExercise++;
+                    case "finishedactivitydetected":
+                        currentActivity++;
                         currentDetected = "";
                         detectedko = 0;
                         detectedok = 0;
-                        if (exercise.Objects.Count >= currentExercise + 1)
+                        if (activity.Objects.Count >= currentActivity + 1)
                         {
                             cleardetected = DateTime.Now.TimeOfDay;
                             currentState = "waitingclear";
@@ -217,7 +217,7 @@ namespace ObjectDetection.Forms
                             UpdateState($"Waiting image to clear ({totalsecs - Math.Truncate(seconds)})...");
                             if (seconds > totalsecs)
                             {
-                                currentState = "questionnextexercise";
+                                currentState = "questionnextactivity";
                             }
                         }
                         cleardetected = DateTime.Now.TimeOfDay;
@@ -226,7 +226,7 @@ namespace ObjectDetection.Forms
 
                     case "finishsentence":
                         UpdateState("Robot Speaking...");
-                        _ = robotAPI.Speak(exercise.FinishSentence.Replace("%%STUDENTNAME%%", studentName));
+                        _ = robotAPI.Speak(activity.FinishSentence.Replace("%%STUDENTNAME%%", studentName));
                         currentState = "stopyolo";
                         break;
 
@@ -244,8 +244,8 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "stop":
-                        UpdateState("Exercise Finished!");
-                        isExerciseRunning = false;
+                        UpdateState("Activity Finished!");
+                        isActivityRunning = false;
                         break;
 
                     default:

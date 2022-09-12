@@ -17,7 +17,7 @@
             <ColumnDefinition Width="29*"/>
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="ExercisesGrid"
+        <DataGrid x:Name="ActivitiesGrid"
             ItemsSource="{Binding .}"
             SelectionMode="Single"
             HeadersVisibility="Column"
@@ -26,11 +26,11 @@
             VerticalAlignment="Top"
             Height="211" Width="191" Margin="14,48,0,0" 
             AutoGenerateColumns="False"
-            MouseDoubleClick="ExercisesGrid_MouseDoubleClick"
-            SelectionChanged="ExercisesGrid_SelectionChanged"
-            PreviewKeyDown="ExercisesGrid_PreviewKeyDown" Background="#FFADADAD" BorderBrush="#FFADADAD" Foreground="White">
+            MouseDoubleClick="ActivitiesGrid_MouseDoubleClick"
+            SelectionChanged="ActivitiesGrid_SelectionChanged"
+            PreviewKeyDown="ActivitiesGrid_PreviewKeyDown" Background="#FFADADAD" BorderBrush="#FFADADAD" Foreground="White">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Exercise" IsReadOnly="True" Binding="{Binding ExerciseName}" Width="*"/>
+                <DataGridTextColumn Header="Activity" IsReadOnly="True" Binding="{Binding ActivityName}" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
@@ -44,7 +44,7 @@
             </DataGrid.Style>
         </DataGrid>
         <DataGrid x:Name="ObjectsGrid"
-            ItemsSource="{Binding ExerciseObject}"
+            ItemsSource="{Binding ActivityObject}"
             SelectionMode="Single"
             CanUserAddRows="False"
             HeadersVisibility="Column"
