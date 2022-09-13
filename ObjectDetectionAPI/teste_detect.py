@@ -24,7 +24,7 @@ while True:
     classIds, scores, boxes = model.detect(frame, confThreshold=0.6, nmsThreshold=0.04)
     
     for (classId, score, box) in zip(classIds, scores, boxes):
-        cv2.rectangle(frame, (box[0], box[1]), (box[0] + box[2], box[1] + box[3]), olor=(0, 255, 0), thickness=2)
+        cv2.rectangle(frame, (box[0], box[1]), (box[0] + box[2], box[1] + box[3]), color=(0, 255, 0), thickness=2)
         text = '%s: %.4f' % (classes[classId], score)
         print(text)
         cv2.putText(frame, text, (box[0], box[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 1, color=(0, 255, 0), thickness=2)
