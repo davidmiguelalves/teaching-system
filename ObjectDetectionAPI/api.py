@@ -38,9 +38,9 @@ class ObjectDetection:
     def __init__(self, objectname, objects): 
         self.objectname = objectname 
         self.objects = objects 
-        self.net = cv2.dnn.readNetFromDarknet(current_dir + '/content/' + objectname + '/config.config', current_dir + '/content/' + objectname+ '/weights.weights')
+        self.net = cv2.dnn.readNetFromDarknet(f'{current_dir}/content/{objectname}/config.config', f'{current_dir}/content/{objectname}/weights.weights')
         self.model = cv2.dnn_DetectionModel(self.net)
-        self.model.setInputParams(scale=1 / 255, size=(416, 416), swapRB=True)
+        self.model.setInputParams(scale = 1 / 255, size = (416, 416), swapRB=True)
 
 class Activities(Resource):
     def get(self):
