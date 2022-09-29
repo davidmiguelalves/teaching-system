@@ -131,7 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Activity.cs" />
-    <Compile Include="API\ZecaAPI.cs" />
+    <Compile Include="API\ZecaRobot.cs" />
     <Compile Include="Models\ActivityObject.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Workers\Detection.cs" />
@@ -162,13 +162,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Contents\Configuraton.xml">
+    <Resource Include="Contents\Configuraton_.xml">
       <SubType>Designer</SubType>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Contents\Configuraton_backup.xml">
-      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +193,12 @@
   <ItemGroup>
     <Resource Include="robot.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Contents\Configuraton.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -204,4 +206,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\OpenCvSharp4.runtime.win.4.1.0.20190416\build\net\OpenCvSharp4.runtime.win.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OpenCvSharp4.runtime.win.4.1.0.20190416\build\net\OpenCvSharp4.runtime.win.props'))" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(ProjectDir)Contents\Configuraton.xml" "$(ProjectDir)\$(OutDir)" /Y /I</PostBuildEvent>
+  </PropertyGroup>
 </Project>

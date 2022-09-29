@@ -11,7 +11,7 @@ namespace ObjectDetection.API
     public interface IRobotAPI
     {
         bool Connect(string IP);
-        bool IsConnect();
+        bool IsConnected();
         bool Disconnect();
         bool Speak(string message);
         bool PlayAnimation(string animation);

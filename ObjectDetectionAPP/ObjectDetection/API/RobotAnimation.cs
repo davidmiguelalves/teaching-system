@@ -10,7 +10,7 @@ namespace ObjectDetection.API
 {
     public enum RobotAnimation
     {
-        CLAP_HANDS,
-        CROSS_ARMS
+        rightAnswer01,
+        wrongAnswer
     }
 }

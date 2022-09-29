@@ -34,8 +34,9 @@ namespace ObjectDetection.Forms
         private Thread objectsThread = null;
         private IRobotAPI robotAPI = null;
         private ObjectDetectionAPI objectAPI = null;
-        private string location = @"D:\GitHub\teaching-system\ObjectDetectionAPP\ObjectDetection\Contents\";
         private bool activityvalidaded = false;
+        private string robotIP = "192.168.1.108";
+        private string detectionIP = "http://127.0.0.1:5000";
 
         #endregion
 
@@ -47,8 +48,9 @@ namespace ObjectDetection.Forms
 
             //Change robot type HERE
             robotAPI = new WindowsRobot();
+            //robotAPI = new ZecaRobot();
 
-            objectAPI = new ObjectDetectionAPI();
+            objectAPI = new ObjectDetectionAPI(detectionIP);
 
             LoadData();
             
@@ -129,7 +131,7 @@ namespace ObjectDetection.Forms
         public void LoadConfiguration()
         {
             XmlSerializer reader = XmlSerializer.FromTypes(new[] { typeof(Configuration) })[0];
-            StreamReader file = new StreamReader(System.IO.Path.Combine(location, "Configuraton.xml"));
+            StreamReader file = new StreamReader(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Configuraton.xml"));
             Configuration configuration = (Configuration)reader.Deserialize(file);
             this.configuration.StudentName = configuration.StudentName;
             this.configuration.Activities = configuration.Activities;
@@ -139,7 +141,7 @@ namespace ObjectDetection.Forms
         public void SaveConfiguration()
         {
             XmlSerializer writer = XmlSerializer.FromTypes(new[] { typeof(Configuration) })[0];
-            FileStream file = File.Create(System.IO.Path.Combine(location, "Configuraton.xml"));
+            FileStream file = File.Create(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "Configuraton.xml"));
             writer.Serialize(file, configuration);
             file.Close();
         }
@@ -148,7 +150,7 @@ namespace ObjectDetection.Forms
         {
             while (true)
             {
-                if (robotAPI.IsConnect())
+                if (robotAPI.IsConnected())
                 {
                     Dispatcher.Invoke(DispatcherPriority.Render, new Action(delegate ()
                     {
@@ -225,7 +227,7 @@ namespace ObjectDetection.Forms
 
         private void StartActivity(Activity ex)
         {
-            if (robotAPI.IsConnect() && objectAPI.Probe())
+            if (robotAPI.IsConnected() && objectAPI.Probe())
             {
                 if (ex.Objects.Count == 0)
                 {
@@ -233,7 +235,7 @@ namespace ObjectDetection.Forms
                 }
                 else if (MessageBox.Show($"Start activity {ex.ActivityName}?", "Start Activity?", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    ActivityForm form = new ActivityForm(ex, configuration.StudentName, robotAPI);
+                    ActivityForm form = new ActivityForm(ex, objectAPI, configuration.StudentName, robotIP, robotAPI);
                     form.ShowDialog();
                 }
             }
@@ -271,7 +273,7 @@ namespace ObjectDetection.Forms
                     Activity activity = (Activity)ActivitiesGrid.SelectedItem;
                     if (activity != null)
                     {
-                        AddActivityForm form = new AddActivityForm(configuration, activity.ActivityName);
+                        AddActivityForm form = new AddActivityForm(configuration, objectAPI, activity.ActivityName);
                         form.ShowDialog();
                         ActivityObject obj = form.activityObject;
                         if (obj != null)

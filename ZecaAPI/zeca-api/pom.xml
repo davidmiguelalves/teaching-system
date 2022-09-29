@@ -14,10 +14,43 @@
 	<name>zeca-api</name>
 	<description>Zeca API</description>
 	<properties>
-		<java.version>1.8</java.version>
+                <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
         
+        <pluginRepositories>
+            <pluginRepository>
+                <id>central</id>
+                <name>Central Repository</name>
+                <url>https://repo.maven.apache.org/maven2</url>
+                <layout>default</layout>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+                <releases>
+                    <updatePolicy>never</updatePolicy>
+                </releases>
+            </pluginRepository>
+        </pluginRepositories>
         <repositories>
+            
+            <repository>
+                <id>central</id>
+                <name>Central Repository</name>
+                <url>https://repo.maven.apache.org/maven2</url>
+                <layout>default</layout>
+                <snapshots>
+                    <enabled>false</enabled>
+                </snapshots>
+            </repository>
+            <repository>
+                <id>robosteps</id>
+                <name>robosteps</name>
+                <!--<url>https://mvnrepository.com/artifact/org.robokind</url>-->
+                <url>http://robokind-dl.com/robosteps/mvn/</url>
+            </repository>
+            <!--
             <repository>
                 <id>robosteps</id>
                 <name>robosteps</name>
@@ -28,6 +61,7 @@
                 <name>robokind</name>
                 <url>https://mvnrepository.com/artifact/org.robokind</url>
             </repository>
+            -->
         </repositories>
 
 	<dependencies>
@@ -47,34 +81,38 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-                
-                
                 <dependency>
-                    <groupId>org.robokind</groupId>
-                    <artifactId>org.robokind.client.basic</artifactId>
-                    <version>0.9.5</version>
-                </dependency>
-                <dependency>
-                    <groupId>com.robosteps</groupId>
-                    <artifactId>com.robosteps.api.core</artifactId>
-                    <version>0.6.6</version>
-                    <type>jar</type>
-                </dependency>
-                <dependency>
-                    <groupId>org.robokind</groupId>
-                    <artifactId>org.robokind.api.messaging</artifactId>
-                    <version>0.8.9.2</version>
-                    <type>jar</type>
-                </dependency>
-	</dependencies>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <type>maven-plugin</type>
+                  </dependency>
+                    <dependency>
+                       <groupId>com.robosteps</groupId>
+                       <artifactId>com.robosteps.api.core</artifactId>
+                       <version>0.6.6</version>
+                       <type>jar</type>
+                      </dependency>
+                    <dependency>
+                        <groupId>org.robokind</groupId>
+                        <artifactId>org.robokind.client.basic</artifactId>
+                        <version>0.9.5</version>
+                        <type>jar</type>
+                    </dependency>
+                   </dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+            <plugins>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.1.0</version>
+                    </plugin>
+            </plugins>
 	</build>
 
 </project>

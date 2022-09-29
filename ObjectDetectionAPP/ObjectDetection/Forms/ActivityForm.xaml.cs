@@ -30,8 +30,10 @@ namespace ObjectDetection.Forms
     {
         private Activity activity = new Activity();
         private string studentName = "";
+        private string IP = "127.0.0.1";
 
         private Detection objectDetection;
+        private ObjectDetectionAPI objectAPI;
 
         private Thread activityThread = null;
         private bool isActivityRunning = false;
@@ -43,13 +45,14 @@ namespace ObjectDetection.Forms
 
         IRobotAPI robotAPI = null;
 
-        public ActivityForm(Activity act, string student, IRobotAPI robotAPI)
+        public ActivityForm(Activity act, ObjectDetectionAPI api, string student, string IP, IRobotAPI robotAPI)
         {
             InitializeComponent();
             activity = act;
             studentName = student;
             this.robotAPI = robotAPI;
-
+            this.IP = IP;
+            this.objectAPI = api; 
             this.Title = "Activity: " + act.ActivityName;
         }
 
@@ -79,7 +82,11 @@ namespace ObjectDetection.Forms
         {
             int detectedok = 0;
             int detectedko = 0;
-            int totalsecs = 3;
+            int totalsecs = 2;
+            int detectedcount = 2;
+            string str = "";
+
+
             TimeSpan cleardetected = new TimeSpan(0, 0, 0);
 
             while (isActivityRunning)
@@ -87,15 +94,15 @@ namespace ObjectDetection.Forms
                 switch (currentState)
                 {
                     case "start":
-                        UpdateState("Starting Activity...");
+                        UpdateState("Starting Activity...","");
                         currentState = "startyolo";
                         break;
 
                     case "startyolo":
-                        UpdateState("Started!");
+                        UpdateState("Started!", "");
 
                         isActivityRunning = true;
-                        objectDetection = new Detection(activity.ActivityName);
+                        objectDetection = new Detection(objectAPI, activity.ActivityName);
                         objectDetection.ImageChange += ImageChangeEvent;
                         objectDetection.ObjectDetected += ObjectDetectedEvent;
                         objectDetection.StartCamera();
@@ -104,7 +111,7 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "waitingcamera":
-                        UpdateState("Waiting Camera...");
+                        UpdateState("Waiting Camera...", "");
                         
                         if (objectDetection.IsCameraAvailable())
                         {
@@ -113,9 +120,9 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "startrobot":
-                        UpdateState("Start Robot!");
+                        UpdateState("Start Robot!", "");
                         currentState = "openingsentence";
-                        if (robotAPI.Connect("127.0.0.1"))
+                        if (robotAPI.Connect(IP))
                         {
                             currentState = "openingsentence";
                         }
@@ -126,24 +133,26 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "openingsentence":
-                        UpdateState("Robot Speaking...");
-                        _ = robotAPI.Speak(activity.OpeningSentence.Replace("%%STUDENTNAME%%", studentName));
+                        str = activity.OpeningSentence.Replace("%%STUDENTNAME%%", studentName);
+                        UpdateState("Robot Speaking...", str);
+                        _ = robotAPI.Speak(str);
                         currentState = "questionnextactivity";
                         break;
 
                     case "questionnextactivity":
-                        UpdateState("Robot Speaking...");
-                        _ = robotAPI.Speak(activity.Objects[currentActivity].Question.Replace("%%STUDENTNAME%%", studentName));
+                        str = activity.Objects[currentActivity].Question.Replace("%%STUDENTNAME%%", studentName);
+                        UpdateState("Robot Speaking...",str);
+                        _ = robotAPI.Speak(str);
                         currentState = "waitingdetection";
                         break;
 
                     case "errorconnectingrobot":
-                        UpdateState("Error Connecting to Robot!");
+                        UpdateState("Error Connecting to Robot!","");
                         isActivityRunning = false;
                         break;
 
                     case "waitingdetection":
-                        UpdateState("Waiting Detection: " + activity.Objects[currentActivity].ObjectName);
+                        UpdateState("Waiting Detection: " + activity.Objects[currentActivity].ObjectName,"");
                         if (!currentDetected.Equals(""))
                         {
                             currentState = "detected";
@@ -151,17 +160,18 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "detected":
-                        UpdateState($"Detected: {currentDetected}");
+                        UpdateState($"Detected: {currentDetected}","");
 
                         if (activity.Objects[currentActivity].ObjectName.Equals(currentDetected))
                         {
                             currentState = "waitingdetection";
                             currentDetected = "";
                             detectedok++;
-                            if (detectedok >= 3)
+                            if (detectedok >= detectedcount)
                             {
                                 _ = robotAPI.Speak(activity.Objects[currentActivity].SuccessfulAnswer.Replace("%%STUDENTNAME%%", studentName));
-                                _ = robotAPI.PlayAnimation(robotAPI.ParseAnimation(RobotAnimation.CLAP_HANDS));
+                                _ = robotAPI.PlayAnimation(robotAPI.ParseAnimation(RobotAnimation.rightAnswer01));
+                                Thread.Sleep(500);
 
                                 currentState = "finishedactivitydetected";
                             }
@@ -170,7 +180,7 @@ namespace ObjectDetection.Forms
                         {
                             detectedko++;
                             currentDetected = "";
-                            if (detectedko >= 3)
+                            if (detectedko >= detectedcount)
                             {
                                 currentState = "detectedko";
                             }
@@ -182,13 +192,15 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "detectedko":
-                        UpdateState("Detected Wrong Object! Robot Speaking...");
+                        str = activity.Objects[currentActivity].UnSuccessfulAnswer.Replace("%%STUDENTNAME%%", studentName) ;
+                        UpdateState($"Detected Wrong Object: {currentDetected}! Robot Speaking...", str);
                         detectedko = 0;
                         detectedok = 0;
                         currentState = "waitingclear";
 
-                        _ = robotAPI.Speak(activity.Objects[currentActivity].UnSuccessfulAnswer.Replace("%%STUDENTNAME%%", studentName));
-                        _ = robotAPI.PlayAnimation(robotAPI.ParseAnimation(RobotAnimation.CROSS_ARMS));
+                        _ = robotAPI.Speak(str);
+                        _ = robotAPI.PlayAnimation(robotAPI.ParseAnimation(RobotAnimation.wrongAnswer));
+                        Thread.Sleep(500);
 
                         break;
 
@@ -209,12 +221,12 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "waitingclear":
-                        UpdateState("Waiting image to clear...");
+                        UpdateState("Waiting image to clear...","");
 
                         var seconds = (cleardetected - LastDetected).TotalSeconds;
                         if (currentDetected == "")
                         {
-                            UpdateState($"Waiting image to clear ({totalsecs - Math.Truncate(seconds)})...");
+                            UpdateState($"Waiting image to clear ({totalsecs - Math.Truncate(seconds)})...","");
                             if (seconds > totalsecs)
                             {
                                 currentState = "questionnextactivity";
@@ -225,26 +237,27 @@ namespace ObjectDetection.Forms
                         break;
 
                     case "finishsentence":
-                        UpdateState("Robot Speaking...");
-                        _ = robotAPI.Speak(activity.FinishSentence.Replace("%%STUDENTNAME%%", studentName));
+                        str = activity.FinishSentence.Replace("%%STUDENTNAME%%", studentName);
+                        UpdateState("Robot Speaking...", str);
+                        _ = robotAPI.Speak(str);
                         currentState = "stopyolo";
                         break;
 
                     case "stopyolo":
-                        UpdateState("Stoping...");
+                        UpdateState("Stoping...","");
                         currentState = "stoprobot";
                         objectDetection.StopCamera();
                         break;
 
                     case "stoprobot":
-                        UpdateState("Stoping...");
+                        UpdateState("Stoping...","");
                         currentState = "stop";
 
                         robotAPI.Disconnect();
                         break;
 
                     case "stop":
-                        UpdateState("Activity Finished!");
+                        UpdateState("Activity Finished!","");
                         isActivityRunning = false;
                         break;
 
@@ -287,13 +300,15 @@ namespace ObjectDetection.Forms
             {
             }
         }
-        private void UpdateState(string state)
+        private void UpdateState(string state1, string state2)
         {
             try
             {
                 Dispatcher.Invoke(DispatcherPriority.Render, new Action(delegate ()
                 {
-                    statelabel.Content = state;
+                    statelabel1.Content = state1;
+                    statelabel2.Content = state2;
+
                 }));
             }
             catch (TaskCanceledException)

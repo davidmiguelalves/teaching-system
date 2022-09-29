@@ -14,6 +14,10 @@ namespace ObjectDetection.API
     {
         public string URL { get; set; } = "http://127.0.0.1:5000";
 
+        public ObjectDetectionAPI(string URL)
+        {
+            this.URL = URL;
+        }
         public List<ObjectDetected> DetectObject(string activity, byte[] byteArray)
         {
             List<ObjectDetected> ret = new List<ObjectDetected>();

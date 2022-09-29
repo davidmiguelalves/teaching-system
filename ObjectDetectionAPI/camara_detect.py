@@ -1,7 +1,7 @@
 import cv2
 import os
 
-cap = cv2.VideoCapture(1)
+cap = cv2.VideoCapture(2)
 
 current_directory = os.path.dirname(os.path.realpath(__file__))
 objectname = "shapes"

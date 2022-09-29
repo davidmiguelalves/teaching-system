@@ -6,51 +6,51 @@
       <Objects>
         <ActivityObject>
           <ObjectName>blue</ObjectName>
-          <Question>Can you show the blue color please?</Question>
-          <SuccessfulAnswer>Very good that's the blue color, let's go to the next one!</SuccessfulAnswer>
-          <UnSuccessfulAnswer>That is not the blue color!</UnSuccessfulAnswer>
+          <Question>Podes mostrar a cor azul?</Question>
+          <SuccessfulAnswer>Muito bem essa é a cor azul!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>Essa não é a cor azul!</UnSuccessfulAnswer>
         </ActivityObject>
         <ActivityObject>
           <ObjectName>red</ObjectName>
-          <Question>Can you show the red color please?</Question>
-          <SuccessfulAnswer>Very good that's the red color, let's go to the next one!</SuccessfulAnswer>
-          <UnSuccessfulAnswer>That is not the red color!</UnSuccessfulAnswer>
+          <Question>Podes mostrar a cor vermelha?</Question>
+          <SuccessfulAnswer>Muito bem essa é a cor vermelha!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>Essa não é a cor vermelha!</UnSuccessfulAnswer>
         </ActivityObject>
         <ActivityObject>
           <ObjectName>green</ObjectName>
-          <Question>Can you show the green color please?</Question>
-          <SuccessfulAnswer>Very good that's the green color!</SuccessfulAnswer>
-          <UnSuccessfulAnswer>That is not the green color!</UnSuccessfulAnswer>
+          <Question>Podes mostrar a cor verde?</Question>
+          <SuccessfulAnswer>Muito bem essa é a cor verde!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>Essa não é a cor verde!</UnSuccessfulAnswer>
         </ActivityObject>
       </Objects>
       <ActivityName>colors</ActivityName>
-      <OpeningSentence>Hello %%STUDENTNAME%%! Let's learn colors?</OpeningSentence>
-      <FinishSentence>Very well, you learned three colors, red, green and blue! Congratulations.</FinishSentence>
+      <OpeningSentence>Ola %%STUDENTNAME%%! Vamos aprender cores?</OpeningSentence>
+      <FinishSentence>Muito bem aprendes-te três cores, vermelho, verde, azul! Parabéns!!!</FinishSentence>
     </Activity>
     <Activity>
       <Objects>
         <ActivityObject>
           <ObjectName>square</ObjectName>
-          <Question>Can you show the square please?</Question>
-          <SuccessfulAnswer>Very good that's the square, let's go to the next one!</SuccessfulAnswer>
-          <UnSuccessfulAnswer>That is not the square!</UnSuccessfulAnswer>
+          <Question>Podes mostrar o quadrado?</Question>
+          <SuccessfulAnswer>Muito bem esse é o quadrado!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>Essa não é o quadrado!</UnSuccessfulAnswer>
         </ActivityObject>
         <ActivityObject>
           <ObjectName>circle</ObjectName>
-          <Question>Can you show the circle please?</Question>
-          <SuccessfulAnswer>Very good that's the circle, let's go to the next one!</SuccessfulAnswer>
-          <UnSuccessfulAnswer>That is not the circle!</UnSuccessfulAnswer>
+          <Question>Podes mostrar o circulo?</Question>
+          <SuccessfulAnswer>Muito bem esse é o circulo!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>Essa não é o circulo!</UnSuccessfulAnswer>
         </ActivityObject>
         <ActivityObject>
           <ObjectName>triangle</ObjectName>
-          <Question>Can you show the triangle please?</Question>
-          <SuccessfulAnswer>Very good that's the triangle!</SuccessfulAnswer>
-          <UnSuccessfulAnswer>That is not the triangle!</UnSuccessfulAnswer>
+          <Question>Podes mostrar o triangulo?</Question>
+          <SuccessfulAnswer>Muito bem esse é o triangulo!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>Essa não é o triangulo!</UnSuccessfulAnswer>
         </ActivityObject>
       </Objects>
       <ActivityName>shapes</ActivityName>
-      <OpeningSentence>Hello %%STUDENTNAME%%! Let's learn shapes?</OpeningSentence>
-      <FinishSentence>Very well, you learned three shapes, square, circle and triangle! Congratulations.</FinishSentence>
+      <OpeningSentence>Ola %%STUDENTNAME%%! Vamos aprender figuras geométricas?</OpeningSentence>
+      <FinishSentence>Muito bem aprendes-te três figuras geométricas, quadrado, circulo, triangulo! Parabéns!!!</FinishSentence>
     </Activity>
   </Activities>
 </Configuration>

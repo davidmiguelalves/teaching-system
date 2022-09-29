@@ -17,7 +17,7 @@ namespace ObjectDetection.Workers
     {
         #region private variables
 
-        private ObjectDetectionAPI objectAPI = new ObjectDetectionAPI();
+        private ObjectDetectionAPI objectAPI;
 
         private string activity = "";
 
@@ -39,11 +39,11 @@ namespace ObjectDetection.Workers
 
         #region public functions
 
-        public Detection(string act)
+        public Detection(ObjectDetectionAPI api, string act)
         {
+            this.objectAPI = api;
             this.activity = act;
         }
-
 
         public void StartCamera()
         {
@@ -78,7 +78,7 @@ namespace ObjectDetection.Workers
 
         private void RunCamera()
         {
-            int index = 1;
+            int index = 2;
             videoCapture = new VideoCapture(index);
             videoCapture.AutoFocus = false;
             videoCapture.Open(index);

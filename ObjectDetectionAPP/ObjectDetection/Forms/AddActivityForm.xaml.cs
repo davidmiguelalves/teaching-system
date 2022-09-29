@@ -27,13 +27,13 @@ namespace ObjectDetection.Forms
     /// </summary>
     public partial class AddActivityForm : Window
     {
-        private ObjectDetectionAPI objectAPI = new ObjectDetectionAPI();
+        private ObjectDetectionAPI objectAPI;
         private Configuration configuration = new Configuration();
         public ActivityObject activityObject = null;
-        public AddActivityForm(Configuration config, string activity)
+        public AddActivityForm(Configuration config, ObjectDetectionAPI api, string activity)
         {
             configuration = config;
-
+            objectAPI = api;
             InitializeComponent();
             LoadObjects(activity);
         }

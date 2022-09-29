@@ -15,7 +15,7 @@ namespace ObjectDetection.API
         {
             return true;
         }
-        public bool IsConnect()
+        public bool IsConnected()
         {
             return true;
         }
@@ -39,9 +39,9 @@ namespace ObjectDetection.API
         {
             switch (animation)
             {
-                case RobotAnimation.CLAP_HANDS:
+                case RobotAnimation.rightAnswer01:
                     return "clap-hands";
-                case RobotAnimation.CROSS_ARMS:
+                case RobotAnimation.wrongAnswer:
                     return "cross-arms";
             }
             return "";

@@ -9,8 +9,9 @@
         mc:Ignorable="d"
         Title="" Height="616.5" Width="701">
     <Grid>
-        <Image Name="imageSource" Margin="15,47,17,10"/>
-        <Label x:Name="statelabel" Content="Wainting to Start..." HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="661" Height="32" FontSize="16" FontWeight="Bold"/>
+        <Image Name="imageSource" Margin="15,74,17,10"/>
+        <Label x:Name="statelabel1" Content="Wainting to Start..." HorizontalAlignment="Left" Margin="15,10,0,0" VerticalAlignment="Top" Width="661" Height="32" FontSize="16" FontWeight="Bold"/>
+        <Label x:Name="statelabel2" Content="" HorizontalAlignment="Left" Margin="15,42,0,0" VerticalAlignment="Top" Width="661" Height="32" FontSize="14" FontWeight="Bold"/>
         <!--HorizontalContentAlignment="Center"-->
     </Grid>
 </Window>

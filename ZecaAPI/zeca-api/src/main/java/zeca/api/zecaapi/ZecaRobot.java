@@ -1,15 +1,13 @@
 package zeca.api.zecaapi;
 
-
+import com.robosteps.api.core.Robosteps;
+import com.robosteps.api.core.RsRobot;
+import com.robosteps.api.core.UserSettings;
 import org.robokind.api.animation.Animation;
-import org.robokind.api.animation.messaging.RemoteAnimationPlayerClient;
-import org.robokind.api.animation.player.AnimationJob;
-import org.robokind.api.motion.messaging.RemoteRobot;
-import org.robokind.api.speech.SpeechJob;
-import org.robokind.api.speech.messaging.RemoteSpeechServiceClient;
-import org.robokind.client.basic.Robokind;
+
 
 /*
+
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -22,53 +20,52 @@ import org.robokind.client.basic.Robokind;
 
 public class ZecaRobot {
     
-    private static RemoteRobot myRobot;
-    private static RemoteAnimationPlayerClient myPlayer;
-    private static RemoteSpeechServiceClient mySpeaker;
+    private static RsRobot myRobot;
     
     public ZecaRobot(){
     }
     
     public boolean Connect(String IP){
-        /*
         try {
-            
-            return true;
             UserSettings.setRobotId("myRobot");
             UserSettings.setRobotAddress(IP);
             UserSettings.setSpeechAddress(IP);
             UserSettings.setAnimationAddress(IP);
 
-            myRobot = Robokind.connectRobot();
-            myPlayer = Robokind.connectAnimationPlayer();
-            mySpeaker = Robokind.connectSpeechService();
+            myRobot = Robosteps.connectRobot();
             if(myRobot == null) return false;
         }catch(Exception e){
             return false;
         }
-        */
         return true;
+    }
+    
+    public boolean IsConnected(){
+        return myRobot == null;
     }
     
     public boolean Disconnect(){
         try {
-            Robokind.disconnect();
+            Robosteps.disconnect();
         }catch(Exception e){
             return false;
         }
         return true;
     }
+    
+    
     public boolean SetSpeakVelocity(String velocity){
         try{
-            SpeechJob job = mySpeaker.speak("\\spd=" + velocity + "\\");
+            myRobot.speak("\\spd=" + velocity + "\\");
         }catch(Exception e){
             return false;
         }
         return true;
     }
+    
     public boolean Speak(String message){
         try{
-            SpeechJob job = mySpeaker.speak(message);
+            myRobot.speak(message);
         }catch(Exception e){
             return false;
         }
@@ -78,11 +75,9 @@ public class ZecaRobot {
     //TODO: Fazer uma lista de animações predefinidas?
     public boolean PlayAnimation(String animation){
         try{
-            Animation anim = Robokind.loadAnimation("C:\\Users\\David.Alves\\Downloads\\TESE\\ZECA2\\DemoZECA\\DEMO\\V11\\01");
-            //AnimationJob animJob = myPlayer.playAnimation(anim);
-            AnimationJob job = myPlayer.playAnimation(anim);
-            Robokind.sleep(500 + anim.getLength());
-            
+            Animation anm = Robosteps.loadAnimation("animations/" + animation);
+            if(anm == null) return false;
+            myRobot.playAnimation(anm);
         }catch(Exception e){
             return false;
         }
