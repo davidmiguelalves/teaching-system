@@ -5,16 +5,16 @@
     <Activity>
       <Objects>
         <ActivityObject>
-          <ObjectName>blue</ObjectName>
-          <Question>Podes mostrar a cor azul?</Question>
-          <SuccessfulAnswer>Muito bem essa é a cor azul!</SuccessfulAnswer>
-          <UnSuccessfulAnswer>Essa não é a cor azul!</UnSuccessfulAnswer>
-        </ActivityObject>
         <ActivityObject>
           <ObjectName>red</ObjectName>
           <Question>Podes mostrar a cor vermelha?</Question>
           <SuccessfulAnswer>Muito bem essa é a cor vermelha!</SuccessfulAnswer>
           <UnSuccessfulAnswer>Essa não é a cor vermelha!</UnSuccessfulAnswer>
+        </ActivityObject>
+          <ObjectName>blue</ObjectName>
+          <Question>Podes mostrar a cor azul?</Question>
+          <SuccessfulAnswer>Muito bem, essa é a cor azul!</SuccessfulAnswer>
+          <UnSuccessfulAnswer>Essa não é a cor azul!</UnSuccessfulAnswer>
         </ActivityObject>
         <ActivityObject>
           <ObjectName>green</ObjectName>
@@ -24,8 +24,8 @@
         </ActivityObject>
       </Objects>
       <ActivityName>colors</ActivityName>
-      <OpeningSentence>Ola %%STUDENTNAME%%! Vamos aprender cores?</OpeningSentence>
-      <FinishSentence>Muito bem aprendes-te três cores, vermelho, verde, azul! Parabéns!!!</FinishSentence>
+      <OpeningSentence>Olá%%STUDENTNAME%%! Vamos aprender cores?</OpeningSentence>
+      <FinishSentence>Muito bem, aprendeste três cores, o vermelho, o azul e o verde. Parabéns!</FinishSentence>
     </Activity>
     <Activity>
       <Objects>
@@ -33,7 +33,7 @@
           <ObjectName>square</ObjectName>
           <Question>Podes mostrar o quadrado?</Question>
           <SuccessfulAnswer>Muito bem esse é o quadrado!</SuccessfulAnswer>
-          <UnSuccessfulAnswer>Essa não é o quadrado!</UnSuccessfulAnswer>
+          <UnSuccessfulAnswer>Esse não é o quadrado!</UnSuccessfulAnswer>
         </ActivityObject>
         <ActivityObject>
           <ObjectName>circle</ObjectName>
@@ -49,8 +49,8 @@
         </ActivityObject>
       </Objects>
       <ActivityName>shapes</ActivityName>
-      <OpeningSentence>Ola %%STUDENTNAME%%! Vamos aprender figuras geométricas?</OpeningSentence>
-      <FinishSentence>Muito bem aprendes-te três figuras geométricas, quadrado, circulo, triangulo! Parabéns!!!</FinishSentence>
+      <OpeningSentence>Olá %%STUDENTNAME%%!, vamos aprender figuras geométricas?</OpeningSentence>
+      <FinishSentence>Muito bem, aprendeste três formas geométricas, o quadrado, o círculo e o triângulo. Parabéns!</FinishSentence>
     </Activity>
   </Activities>
 </Configuration>

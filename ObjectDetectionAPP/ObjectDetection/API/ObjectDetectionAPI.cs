@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ObjectDetection.API
 {
-    public class ObjectDetectionAPI
+    public class ObjectDetectionAPI : IObjectDetectionAPI
     {
         public string URL { get; set; } = "http://127.0.0.1:5000";
 
@@ -102,5 +102,6 @@ namespace ObjectDetection.API
             }
             return ret;
         }
+
     }
 }

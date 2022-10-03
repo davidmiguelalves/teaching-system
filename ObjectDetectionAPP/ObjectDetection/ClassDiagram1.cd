@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ObjectDetection.Forms.ActivityForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEABAQAAAAGACKAAIAAASAAEIAAAABAAQAAgJBAAAAQ=</HashCode>
+      <FileName>Forms\ActivityForm.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ObjectDetection.Forms.AddActivityForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAIAAAAAAAAAgAAAAAAACAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Forms\AddActivityForm.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ObjectDetection.Forms.MainForm" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YEEAA4AAACQQAAAAgQhAqAAAAQiBCQCABEEAAEAgAIA=</HashCode>
+      <FileName>Forms\MainForm.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ObjectDetection.Models.Activity">
+    <Position X="7.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAACAQAAA=</HashCode>
+      <FileName>Models\Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectDetection.Models.ActivityObject">
+    <Position X="7.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAIAAAAAAAAAAEAAAAAAAAgAA=</HashCode>
+      <FileName>Models\ActivityObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectDetection.Models.Configuration">
+    <Position X="9.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\Configuration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectDetection.Models.ObjectDetected">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAIAAAAAwAAAACgAQAAAAAAAAA=</HashCode>
+      <FileName>Models\ObjectDetected.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectDetection.Workers.Detection">
+    <Position X="11.25" Y="0.5" Width="1.75" />
+    <NestedTypes>
+      <Delegate Name="ObjectDetection.Workers.Detection.ImageChangeEvent" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Workers\Detection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Delegate Name="ObjectDetection.Workers.Detection.ObjectDetectedEvent" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Workers\Detection.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAABAAAAAAAAAAAAIAAAAACAAAgAAgQQAAAjAAAAA=</HashCode>
+      <FileName>Workers\Detection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ObjectDetection.API.ObjectDetectionAPI" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAACAAAAAAAAAAAAAAAAAACEAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>API\ObjectDetectionAPI.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ObjectDetection.API.WindowsRobot" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAABAAAAAAIAAAAAgIAAAAAAAAAEAAAA=</HashCode>
+      <FileName>API\WindowsRobot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ObjectDetection.API.ZecaRobot" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAABAAAAAAIAAACAgIAAAAAAAAAGAAAA=</HashCode>
+      <FileName>API\ZecaRobot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="ObjectDetection.API.IObjectDetectionAPI">
+    <Position X="0.5" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAACAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>API\IObjectDetectionAPI.cs</FileName>
+      <NewMemberFileName>API\IRobotAPI.cs</NewMemberFileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ObjectDetection.API.IRobotAPI">
+    <Position X="0.5" Y="2.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAABAAAAAAIAAAAAgIAAAAAAAAAEAAAA=</HashCode>
+      <FileName>API\IRobotAPI.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="ObjectDetection.API.RobotAnimation">
+    <Position X="0.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>API\RobotAnimation.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
