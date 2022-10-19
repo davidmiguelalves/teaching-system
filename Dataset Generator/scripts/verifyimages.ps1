@@ -1,7 +1,10 @@
-﻿
-$foldertoverify = "D:\Tese\colors\full-recise"
+﻿param(
+     [Parameter()]
+     [string]$foldertoverify
+)
+#$foldertoverify = "D:\Tese\colors\full-recise"
 
-$verifyfolder = "D:\Tese\tese\verify"
+$verifyfolder = "$($foldertoverify)\verify"
 $folder0 = $verifyfolder+"\0"
 $folder1 = $verifyfolder+"\1"
 $folder2 = $verifyfolder+"\2"
