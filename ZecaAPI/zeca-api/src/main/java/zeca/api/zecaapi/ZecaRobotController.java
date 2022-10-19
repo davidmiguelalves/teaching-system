@@ -22,7 +22,7 @@ public class ZecaRobotController {
     @PostMapping("Connect")
     public ResponseEntity<String> Connect(@RequestBody String IP){
         if (!robot.Connect(IP))
-            return new ResponseEntity<>("Error Connect", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Error Connecting", HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     
