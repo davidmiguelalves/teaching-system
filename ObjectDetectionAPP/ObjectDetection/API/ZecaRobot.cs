@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ObjectDetection.API
@@ -87,6 +88,7 @@ namespace ObjectDetection.API
                 try
                 {
                     HttpResponseMessage response = client.PostAsync($"{URL}/Speak", new StringContent(Message, Encoding.UTF8, "text/plain")).Result;
+                    Thread.Sleep(2000);
                     return response.IsSuccessStatusCode;
                 }
                 catch
@@ -102,6 +104,7 @@ namespace ObjectDetection.API
                 try
                 {
                     HttpResponseMessage response = client.PostAsync($"{URL}/PlayAnimation", new StringContent(Animation, Encoding.UTF8, "text/plain")).Result;
+                    Thread.Sleep(2000);
                     return response.IsSuccessStatusCode;
                 }
                 catch

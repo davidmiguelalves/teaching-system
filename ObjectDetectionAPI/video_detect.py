@@ -2,12 +2,13 @@ import cv2
 import os
 import csv
 
-show_video = False
+show_video = True
 save_results = False
-save_video = True
+save_video = False
+from_video = False
 
 video_name = "square"
-objectname = "shapes"
+objectname = "colors"
 
 if save_results:
     csvfile = open(os.path.dirname(os.path.realpath(__file__)) + '/results.csv', 'w', newline='')
@@ -15,8 +16,12 @@ if save_results:
 
 current_directory = os.path.dirname(os.path.realpath(__file__))
 
-file = f'{current_directory}/videos/{video_name}.mp4'
-cap = cv2.VideoCapture(file)
+if from_video:
+    file = f'{current_directory}/videos/{video_name}.mp4'
+    cap = cv2.VideoCapture(file)
+else:
+    cap = cv2.VideoCapture(2)
+
 
 width  = 416
 height = 416
@@ -27,7 +32,7 @@ classes = []
 with open(f'{objectfolder}names.names', 'r') as f:
     classes = f.read().splitlines()
 
-net = cv2.dnn.readNetFromDarknet(f'{objectfolder}config.config', f'{objectfolder}weights_old.weights')
+net = cv2.dnn.readNetFromDarknet(f'{objectfolder}config.config', f'{objectfolder}weights.weights')
 
 r = width / float(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 dim = (width, int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT) * r))

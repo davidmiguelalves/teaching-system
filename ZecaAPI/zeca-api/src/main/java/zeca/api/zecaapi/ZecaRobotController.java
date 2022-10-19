@@ -53,4 +53,10 @@ public class ZecaRobotController {
             return new ResponseEntity<>("Error PlayAnimation", HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @PostMapping("IsConnected")
+    public ResponseEntity<String> IsConnected(){
+        if (!robot.IsConnected())
+            return new ResponseEntity<>("Error Verifying connection", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

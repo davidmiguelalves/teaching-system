@@ -171,7 +171,7 @@ namespace ObjectDetection.Forms
                             {
                                 _ = robotAPI.Speak(activity.Objects[currentActivity].SuccessfulAnswer.Replace("%%STUDENTNAME%%", studentName));
                                 _ = robotAPI.PlayAnimation(robotAPI.ParseAnimation(RobotAnimation.rightAnswer01));
-                                Thread.Sleep(500);
+
 
                                 currentState = "finishedactivitydetected";
                             }
@@ -200,7 +200,7 @@ namespace ObjectDetection.Forms
 
                         _ = robotAPI.Speak(str);
                         _ = robotAPI.PlayAnimation(robotAPI.ParseAnimation(RobotAnimation.wrongAnswer));
-                        Thread.Sleep(500);
+
 
                         break;
 
@@ -252,8 +252,8 @@ namespace ObjectDetection.Forms
                     case "stoprobot":
                         UpdateState("Stoping...","");
                         currentState = "stop";
-
-                        robotAPI.Disconnect();
+                        // TODO: Disconnect
+                        //robotAPI.Disconnect();
                         break;
 
                     case "stop":

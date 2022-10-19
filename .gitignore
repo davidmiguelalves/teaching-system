@@ -393,3 +393,5 @@ FodyWeavers.xsd
 # Lithium SDK text templates
 
 **/GeneratedCode/TextTemplates/
+/ZecaAPI/zeca-api/target - Copy/
+/ZecaAPI/zeca-api/target_bckp/

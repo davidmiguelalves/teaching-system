@@ -5,12 +5,12 @@
     <Activity>
       <Objects>
         <ActivityObject>
-        <ActivityObject>
           <ObjectName>red</ObjectName>
           <Question>Podes mostrar a cor vermelha?</Question>
           <SuccessfulAnswer>Muito bem essa é a cor vermelha!</SuccessfulAnswer>
           <UnSuccessfulAnswer>Essa não é a cor vermelha!</UnSuccessfulAnswer>
         </ActivityObject>
+        <ActivityObject>
           <ObjectName>blue</ObjectName>
           <Question>Podes mostrar a cor azul?</Question>
           <SuccessfulAnswer>Muito bem, essa é a cor azul!</SuccessfulAnswer>
@@ -24,7 +24,7 @@
         </ActivityObject>
       </Objects>
       <ActivityName>colors</ActivityName>
-      <OpeningSentence>Olá%%STUDENTNAME%%! Vamos aprender cores?</OpeningSentence>
+      <OpeningSentence>Olá %%STUDENTNAME%%! Vamos aprender cores?</OpeningSentence>
       <FinishSentence>Muito bem, aprendeste três cores, o vermelho, o azul e o verde. Parabéns!</FinishSentence>
     </Activity>
     <Activity>
@@ -49,7 +49,7 @@
         </ActivityObject>
       </Objects>
       <ActivityName>shapes</ActivityName>
-      <OpeningSentence>Olá %%STUDENTNAME%%!, vamos aprender figuras geométricas?</OpeningSentence>
+      <OpeningSentence>Olá %%STUDENTNAME%%! Vamos aprender figuras geométricas?</OpeningSentence>
       <FinishSentence>Muito bem, aprendeste três formas geométricas, o quadrado, o círculo e o triângulo. Parabéns!</FinishSentence>
     </Activity>
   </Activities>

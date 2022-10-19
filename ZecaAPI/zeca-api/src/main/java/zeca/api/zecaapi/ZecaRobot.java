@@ -41,7 +41,7 @@ public class ZecaRobot {
     }
     
     public boolean IsConnected(){
-        return myRobot == null;
+        return myRobot != null;
     }
     
     public boolean Disconnect(){

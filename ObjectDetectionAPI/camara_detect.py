@@ -11,7 +11,7 @@ classes = []
 with open(f'{objectfolder}names.names', 'r') as f:
     classes = f.read().splitlines()
 
-net = cv2.dnn.readNetFromDarknet(f'{objectfolder}config.config', f'{objectfolder}weights.weights')
+net = cv2.dnn.readNetFromDarknet(f'{objectfolder}config.config', f'{objectfolder}weights_old.weights')
  
 model = cv2.dnn_DetectionModel(net)
 model.setInputParams(scale=1 / 255, size=(416, 416), swapRB=True)
