@@ -1,14 +1,3 @@
-net = cv2.dnn.readNetFromDarknet('config.config', 'weights.weights')
- 
-model = cv2.dnn_DetectionModel(net)
-model.setInputParams(scale = 1 / 255, size = (416, 416), swapRB = True)
-
-ret, frame = camera.read()
-frame = cv2.resize(frame, (416, 416), interpolation = cv2.INTER_AREA)
-classIds, scores, boxes = model.detect(frame, confThreshold = 0.6, nmsThreshold = 0.04)
-
-
-
 import cv2
 import os
 
