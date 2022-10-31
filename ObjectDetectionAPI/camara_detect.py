@@ -2,7 +2,7 @@
 net = cv2.dnn.readNetFromDarknet('config.config', 'weights.weights')
  
 model = cv2.dnn_DetectionModel(net)
-model.setInputParams(scale=1 / 255, size=(416, 416), swapRB=True)
+model.setInputParams(scale = 1 / 255, size = (416, 416), swapRB = True)
 
 ret, frame = cap.read()
 frame = cv2.resize(frame, (416, 416), interpolation = cv2.INTER_AREA)
