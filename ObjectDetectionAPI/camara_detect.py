@@ -1,4 +1,3 @@
-
 net = cv2.dnn.readNetFromDarknet('config.config', 'weights.weights')
  
 model = cv2.dnn_DetectionModel(net)
